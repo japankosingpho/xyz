@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link 
+        rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" 
+         integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" 
+        crossorigin="anonymous" 
+         />
+        <link rel="stylesheet" href="css/style.css" />
+        </head>
+        <body>
+                <div class="main_div">
+                <div class="music_container">
+                    <h2 id="title">O SANAM</h2>
+                    <h3 id="artist">Lucky Ali</h3>
+            <div class="img_container">
+                    <img src="jap 1.jpg" alt="A picture of Lucky Ali" />
+                    </div>
+                    <audio src="O Sanam (Reprise)  JalRaj  Lucky Ali  Latest Hindi Cover 2021.mp3"></audio>
+
+                    <div class="music_controls">
+                        <i class="fas fa-backward" id="prev" title="Previous"></i>
+                        <i class="fas fa-play main_button" id="play" title="Play"></i>
+                        <i class="fas  fa-forward" id="next" title="Next"></i>
+                </div>
+            </div>
+        </div>
+        <script>
+            const music = document.querySelector("audio");
+            const img = document.querySelector("img");
+            const play= document.getElementById("play");
+            const artist= document.getElementById("artist");
+            const title= document.getElementById("title");
+            const prev= document.getElementById("prev");            
+            const next= document.getElementById("next");
+
+        const songs = [
+            {
+                name: "O Sanam (Reprise)  JalRaj  Lucky Ali  Latest Hindi Cover 2021.mp3",
+                title:"O SANAM",
+                artist:"Lucky Ali",
+                img:"jap 1.jpg",
+            },
+            {
+                name: "Red Hot Chili Peppers - Californication (Lyrics).mp3",
+                title:"CALIFORNICATION",
+                artist:"Red Hot Chilli peppers",
+                img:"jap2.jpg",
+            },
+            {
+                name: "Jeena Jeena (Audio Song)  Badlapur  Varun Dhawan, Yami Gautam & Nawazuddin Siddiqui.mp3",
+                title:"JEENA JEENA",
+                artist:"Atif Aslam",
+                img:"jap3.jpg",
+            },
+            {
+                name: " Modern Talking - Cheri Cheri Lady (Lyrics).mp3",
+                title:"CHERI CHERI LADY",
+                artist:"Modern Talking",
+                img:"jap4.jpg",
+            },
+            {
+                name: "Lil Nas X - Old Town Road (Lyrics) ft. Billy Ray Cyrus.mp3",
+                title:"OLD TOWN ROAD",
+                artist:"Lil Nas x",
+                img:"jap5.jpg",
+            },
+            {
+                name: "Glass Animals - Heat Waves.mp3",
+                title:"HEAT WAVES",
+                artist:"Glass Animals",
+                img:"jap6.JPG",
+            },
+           
+            
+            {
+                name: "Apurva Tamang - timi sangai lyrics  Tyo sharad ritu ko paat.mp3",
+                title:"TIMI SANGAI",
+                artist:"Apurva Tamang",
+                img:"alien pig.jpeg",
+            },
+    ];
+
+            let isPlaying = false;
+
+      // for play function
+            const playMusic = () =>{
+                isPlaying = true;
+             music.play();
+             play.classList.replace("fa-play", "fa-pause");
+             img.classList.add("anime");
+            };
+
+     // for pause function
+            const pauseMusic = () =>{
+                isPlaying = false;
+             music.pause();
+             play.classList.replace("fa-pause", "fa-play");
+             img.classList.remove("anime");
+            };
+
+          play.addEventListener("click", () => {
+            isPlaying ? pauseMusic() : playMusic();
+            });
+
+            // changing the music data
+            
+            const loadSongs = (songs) =>{
+             title. textContent = songs.title;
+             artist. textContent = songs.artist;
+              music.src =songs.name;
+              img.src=songs.img;
+              
+            };
+
+           songIndex = 0;
+           //loadSongs(songs[3]);
+                                
+            const nextSong = () => {
+                songIndex = (songIndex + 1) % songs.length;
+                
+              loadSongs(songs[songIndex]);
+              playMusic();
+            };
+
+            const prevSongs = () => {
+                songIndex = (songIndex - 1 + songs.length) % songs.length;
+                loadSongs(songs[songIndex]);
+              playMusic();
+            };
+
+            next.addEventListener("click" , nextSong);
+            prev.addEventListener("click", prevSongs);
+
+
+        </script>
+    </body>
+</html>
